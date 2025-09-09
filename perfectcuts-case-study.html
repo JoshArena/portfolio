@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PerfectCuts - Case Study | Josh Arena Portfolio</title>
+    <meta name="description" content="PerfectCuts case study - AI-powered haircut recommendations app designed and coded in React and Swift">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Aguafina+Script&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .case-study-container {
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Header and Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(16, 16, 16, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        /* Hover Expand Navbar */
+        .hover-expand-navbar {
+            margin: 0 auto;
+            overflow: visible;
+            border-radius: 40px;
+            cursor: pointer;
+            width: 208px;
+            height: 48px;
+            background-color: transparent;
+            border: 1px solid #303135;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: width 0.4s ease-in-out;
+        }
+
+        .hover-expand-navbar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 40px;
+            background-color: #101010;
+            z-index: -1;
+        }
+
+        /* Progress Pill SVG */
+        .progress-pill {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            z-index: 1001;
+            pointer-events: none;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            transition: width 0.4s ease-in-out;
+        }
+
+        /* Ensure stroke is always white */
+        .progress-pill path {
+            stroke: #ffffff !important;
+        }
+
+        .hover-expand-navbar:hover {
+            width: 377px;
+        }
+
+        /* Initials Circles */
+        .initials-circle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid #303135;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: #303135;
+            font-family: 'Aguafina Script', cursive;
+            pointer-events: none;
+        }
+
+        .left-circle {
+            left: 13px;
+        }
+
+        .right-circle {
+            right: 13px;
+        }
+
+        .initials-char {
+            display: inline-block;
+            position: relative;
+        }
+
+        /* Expanded Navigation */
+        .expanded-nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: #7F8188;
+            padding-left: 60px;
+            padding-right: 60px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .hover-expand-navbar:hover .expanded-nav {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-item-expanded {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item-expanded:hover {
+            color: #ffffff;
+        }
+
+        /* Remove focus/selection outlines from navigation */
+        .hover-expand-navbar:focus,
+        .hover-expand-navbar:focus-visible,
+        .hover-expand-navbar:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .nav-item-expanded:focus,
+        .nav-item-expanded:focus-visible,
+        .nav-item-expanded:active {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        .hover-expand-navbar *:focus,
+        .hover-expand-navbar *:focus-visible {
+            outline: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Hero Section */
+        .case-study-hero {
+            padding: 200px 0 120px;
+            text-align: center;
+            background: transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 0 30px rgba(0, 122, 255, 0.6), 0 0 60px rgba(0, 122, 255, 0.4), 0 0 90px rgba(0, 122, 255, 0.2);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #cccccc;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.6;
+        }
+
+        /* Sections */
+        .case-study-section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            border-radius: 2px;
+        }
+
+        .section-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 40px;
+        }
+
+        .section-content strong {
+            color: white !important;
+            font-weight: 600;
+        }
+
+        /* App Screens Grid */
+        .app-screens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .screen-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .screen-item:nth-child(2) { animation-delay: 0.5s; }
+        .screen-item:nth-child(3) { animation-delay: 1s; }
+        .screen-item:nth-child(4) { animation-delay: 1.5s; }
+        .screen-item:nth-child(5) { animation-delay: 2s; }
+        .screen-item:nth-child(6) { animation-delay: 2.5s; }
+        .screen-item:nth-child(7) { animation-delay: 3s; }
+        .screen-item:nth-child(8) { animation-delay: 3.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .screen-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.2);
+        }
+
+        .screen-image {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .screen-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .screen-description {
+            font-size: 0.9rem;
+            color: #cccccc;
+        }
+
+        /* Development Process */
+        .dev-process {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .dev-step {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
+            border-radius: 15px;
+            border: 1px solid rgba(0, 122, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .dev-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 122, 255, 0.2);
+        }
+
+        .dev-step-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .dev-step-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .dev-step-description {
+            font-size: 1rem;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+
+        /* App Store Section */
+        .app-store-section {
+            text-align: center;
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(0, 122, 255, 0.1), rgba(88, 86, 214, 0.1));
+            border-radius: 20px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-store-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(0,122,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(0,122,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(0,122,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(0,122,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(0,122,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .app-store-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .app-store-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 122, 255, 0.5);
+        }
+
+        .app-store-description {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .app-store-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-store-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .app-store-button:hover::before {
+            left: 100%;
+        }
+
+        .app-store-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 122, 255, 0.4);
+        }
+
+        /* Business Model */
+        .business-model {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 60px;
+            margin: 60px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .business-model h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .business-model p {
+            color: #cccccc;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .app-screens-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .screen-image {
+                height: 300px;
+            }
+
+            .dev-process {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .app-store-title {
+                font-size: 2rem;
+            }
+
+            .app-store-description {
+                font-size: 1rem;
+            }
+
+            .business-model {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-screens-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="case-study-container">
+        <header class="header" role="banner">
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <div class="hover-expand-navbar" id="hoverNavbar" role="button" aria-label="Navigation menu" tabindex="0">
+                    <!-- Progress pill SVG -->
+                    <svg class="progress-pill" width="400" height="52">
+                        <path id="progressPath" d="M 104 4 L 184 4 A 20 20 0 0 1 204 24 L 204 24 A 20 20 0 0 1 184 44 L 104 44 A 20 20 0 0 1 84 24 L 84 24 A 20 20 0 0 1 104 4" 
+                              stroke="url(#whiteGlow)" 
+                              stroke-width="3" 
+                              fill="none" 
+                              stroke-dasharray="316" 
+                              stroke-dashoffset="316" 
+                              stroke-linecap="round" 
+                              filter="url(#glow)" />
+                        <defs>
+                            <linearGradient id="whiteGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge> 
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                    </svg>
+                    
+                    <!-- Left initials circle -->
+                    <div class="initials-circle left-circle">
+                        <span class="initials-char" style="top: 6px; left: -5px;">J</span>
+                        <span class="initials-char" style="top: 3px; left: -3px; margin-left: 2px;">A</span>
+                    </div>
+                    
+                    <!-- Right initials circle -->
+                    <div class="initials-circle right-circle">
+                        <span class="initials-char" style="top: 6px; left: -5px;">J</span>
+                        <span class="initials-char" style="top: 3px; left: -3px; margin-left: 2px;">A</span>
+                    </div>
+                    
+                    <!-- Expanded navigation content -->
+                    <div class="expanded-nav" id="expandedNav" role="menu">
+                        <div class="nav-item-expanded" data-target="projects" role="menuitem" tabindex="0" aria-label="View my work projects" onclick="window.location.href='index.html#work'">Work</div>
+                        <div class="nav-item-expanded" data-target="contact" role="menuitem" tabindex="0" aria-label="Get in touch with me" onclick="window.location.href='index.html#contact'">Contact</div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="case-study-hero">
+            <h1 class="hero-title">PerfectCuts</h1>
+            <p class="hero-subtitle">AI-Powered Haircut Recommendations</p>
+            <p class="hero-description">My first design project that taught me the power of simplicity. An app that helps users find their perfect haircut using AI face analysis.</p>
+        </section>
+
+        <!-- The Story Section -->
+        <section class="case-study-section">
+            <h2 class="section-title">The Story</h2>
+            <div class="section-content">
+                <p>PerfectCuts was one of my first design projects, and looking back, it perfectly demonstrates why simple designs work so well. The app uses AI to analyze your face shape and recommend haircuts that would look best on you.</p>
+                
+                <p>I coded this app twice - first in <strong>React</strong> to prototype the concept and user flow, then rebuilt it in <strong>Swift</strong> for the iOS App Store. The simple design actually became a strength - users could clearly identify the main actions and understand the user flow without any confusion.</p>
+                
+                <p>This project taught me that sometimes the best design is the one that gets out of the user's way and lets them accomplish their goal quickly and efficiently.</p>
+            </div>
+        </section>
+
+        <!-- App Screens Section -->
+        <section class="case-study-section">
+            <h2 class="section-title">App Screens</h2>
+            <div class="app-screens-grid">
+                <div class="screen-item">
+                    <img src="PerferctCuts/onbaodring.png" alt="Onboarding Screen" class="screen-image">
+                    <h3 class="screen-title">Onboarding</h3>
+                    <p class="screen-description">Welcome users and explain the app's purpose</p>
+                </div>
+                <div class="screen-item">
+                    <img src="PerferctCuts/sign in.png" alt="Sign In Screen" class="screen-image">
+                    <h3 class="screen-title">Sign In</h3>
+                    <p class="screen-description">Simple authentication to get started</p>
+                </div>
+                <div class="screen-item">
+                    <img src="PerferctCuts/sign in2.png" alt="Sign In Alternative" class="screen-image">
+                    <h3 class="screen-title">Sign In Alternative</h3>
+                    <p class="screen-description">Alternative sign-in method</p>
+                </div>
+                <div class="screen-item">
+                    <img src="PerferctCuts/log in.png" alt="Log In Screen" class="screen-image">
+                    <h3 class="screen-title">Log In</h3>
+                    <p class="screen-description">Returning user login</p>
+                </div>
+                <div class="screen-item">
+                    <img src="PerferctCuts/main screen.png" alt="Main Screen" class="screen-image">
+                    <h3 class="screen-title">Main Screen</h3>
+                    <p class="screen-description">Core functionality and navigation</p>
+                </div>
+                <div class="screen-item">
+                    <img src="PerferctCuts/empty.png" alt="Empty State" class="screen-image">
+                    <h3 class="screen-title">Empty State</h3>
+                    <p class="screen-description">When no analysis has been done yet</p>
+                </div>
+                <div class="screen-item">
+                    <img src="PerferctCuts/summary.png" alt="Analysis Summary" class="screen-image">
+                    <h3 class="screen-title">Analysis Summary</h3>
+                    <p class="screen-description">Results of the AI face analysis</p>
+                </div>
+                <div class="screen-item">
+                    <img src="PerferctCuts/product reccomendation.png" alt="Product Recommendations" class="screen-image">
+                    <h3 class="screen-title">Product Recommendations</h3>
+                    <p class="screen-description">Haircare products and styling tools</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Development Process -->
+        <section class="case-study-section">
+            <h2 class="section-title">Development Process</h2>
+            <div class="dev-process">
+                <div class="dev-step">
+                    <div class="dev-step-icon">⚛️</div>
+                    <h3 class="dev-step-title">React Prototype</h3>
+                    <p class="dev-step-description">Built the initial concept in React to test user flows and validate the idea before committing to native development.</p>
+                </div>
+                <div class="dev-step">
+                    <div class="dev-step-icon">📱</div>
+                    <h3 class="dev-step-title">Swift Development</h3>
+                    <p class="dev-step-description">Rebuilt the app in Swift for iOS, implementing native performance and App Store integration.</p>
+                </div>
+                <div class="dev-step">
+                    <div class="dev-step-icon">🤖</div>
+                    <h3 class="dev-step-title">AI Integration</h3>
+                    <p class="dev-step-description">Integrated face analysis AI to provide personalized haircut recommendations based on facial structure.</p>
+                </div>
+                <div class="dev-step">
+                    <div class="dev-step-icon">🏪</div>
+                    <h3 class="dev-step-title">App Store Launch</h3>
+                    <p class="dev-step-description">Published to the iOS App Store with a freemium model and in-app purchases for scan credits.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Model -->
+        <section class="case-study-section">
+            <h2 class="section-title">Business Model</h2>
+            <div class="business-model">
+                <h3>Monetization Strategy</h3>
+                <p>PerfectCuts was designed with a freemium model in mind. Users could download the app for free, but would need to purchase credits to get AI-powered haircut analysis.</p>
+                
+                <p><strong>Primary Revenue:</strong> In-app purchases for scan credits ($2.99 for 5 scans) - this was the main way users would access the core AI functionality.</p>
+                
+                <p><strong>Secondary Revenue:</strong> Affiliate marketing from product recommendations. When users viewed recommended haircare products and styling tools, I would earn commission from any purchases made through the app.</p>
+                
+                <p>This dual-revenue approach ensured the app could generate income both from the core AI service and from helping users discover and purchase related products.</p>
+            </div>
+        </section>
+
+        <!-- App Store Section -->
+        <section class="case-study-section">
+            <div class="app-store-section">
+                <div class="app-store-content">
+                    <h2 class="app-store-title">Available on iOS</h2>
+                    <p class="app-store-description">PerfectCuts is live on the App Store with a 5.0 star rating. Download it now to try AI-powered haircut recommendations for yourself.</p>
+                    <a href="https://apps.apple.com/au/app/perfectcuts/id6745402160" target="_blank" class="app-store-button">View on App Store</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Ensure navigation stroke stays white
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressPath = document.getElementById('progressPath');
+            const navbar = document.getElementById('hoverNavbar');
+            
+            if (progressPath && navbar) {
+                progressPath.style.stroke = '#ffffff';
+                progressPath.setAttribute('stroke', '#ffffff');
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.screen-item, .dev-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickDish - Case Study | Joshua Arena</title>
+    <meta name="description" content="QuickDish case study - coming soon">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aguafina+Script&display=swap" rel="stylesheet">
+    <style>
+        .case-study-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .case-study-hero {
+            text-align: center;
+            padding: 80px 0;
+            background: transparent;
+        }
+        
+        .case-study-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            color: white;
+        }
+        
+        .case-study-subtitle {
+            font-size: 1.25rem;
+            color: #cccccc;
+        }
+        
+        .case-study-section {
+            padding: 80px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .case-study-section:last-child {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .section-content {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: #cccccc;
+            margin-bottom: 40px;
+        }
+        
+        .section-content strong {
+            font-weight: 600;
+            color: white !important;
+        }
+        
+        .features-section {
+            margin: 60px 0 40px 0;
+        }
+        
+        .features-heading {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .features-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+        
+        .features-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 20px;
+            color: #cccccc;
+        }
+        
+        .features-list li:before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .features-video {
+            flex: 1;
+            max-width: 400px;
+        }
+        
+        .features-video video {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        
+        .competitor-analysis, .goals-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+        
+        .competitor-analysis h3, .goals-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .competitor-analysis p, .goals-section p {
+            color: #4a4a4a;
+        }
+        
+        .competitor-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .competitor-image {
+            background: transparent;
+            border-radius: 12px;
+            padding: 0;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .competitor-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .competitor-image:hover {
+            transform: translateY(-4px);
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .app-preview, .final-design {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .quickdish-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0 80px 0;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .quickdish-image {
+            background: transparent;
+            border-radius: 12px;
+            padding: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .quickdish-image:hover {
+            transform: translateY(-4px);
+        }
+        
+        .quickdish-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .phone-mockup {
+            display: inline-block;
+            width: 300px;
+            height: 600px;
+            background: #1a1a1a;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .app-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+        
+        .nav-tab {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .nav-tab.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .app-content {
+            padding: 20px;
+            height: calc(100% - 80px);
+            overflow-y: auto;
+        }
+        
+        .pantry-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .ingredient-tags {
+            margin-bottom: 20px;
+        }
+        
+        .ingredient-tag {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .pantry-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .pantry-item {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        
+        .home-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+        
+        .home-section p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .recipe-categories {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .category-tab {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            border: 1px solid #e9ecef;
+        }
+        
+        .category-tab.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .recipe-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .recipe-card {
+            background: #f8f9fa;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        
+        .cuisine-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .cuisine-tab {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .design-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
+            margin: 40px 0;
+            align-items: center;
+        }
+        
+        .design-iterations {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .comparison-item {
+            text-align: center;
+        }
+        
+        .iteration-item {
+            text-align: left;
+        }
+        
+        .comparison-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .iteration-item h4 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #1a1a1a;
+        }
+        
+        .design-mockup {
+            background: transparent;
+            border-radius: 12px;
+            padding: 0;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .design-mockup img {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .comparison-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .arrow-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 20px solid #667eea;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            animation: arrowPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(10px);
+                opacity: 0.7;
+            }
+        }
+        
+        .mockup-placeholder {
+            color: #666;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .ideations-content {
+            margin-bottom: 40px;
+        }
+        
+        .ideation-images {
+            margin: 60px 0;
+        }
+        
+        .ideation-row {
+            margin-bottom: 80px;
+        }
+        
+        .ideation-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .ideation-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .ideation-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .ideation-image {
+            background: transparent;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ideation-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .ideations-content p {
+            margin-bottom: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .case-study-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .case-study-section {
+                padding: 40px 0;
+            }
+            
+            .phone-mockup {
+                width: 250px;
+                height: 500px;
+            }
+            
+            .design-comparison {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .comparison-arrow {
+                order: 2;
+            }
+            
+            .comparison-item:first-child {
+                order: 1;
+            }
+            
+            .comparison-item:last-child {
+                order: 3;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
+            
+            .ideation-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .ideation-image img {
+                height: 200px;
+            }
+            
+            .ideation-title {
+                font-size: 1.25rem;
+                margin-bottom: 20px;
+            }
+            
+            .ideation-row {
+                margin-bottom: 40px;
+            }
+            
+            .competitor-analysis, .goals-section {
+                padding: 20px;
+            }
+            
+            .features-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .features-video {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div class="container">
+        <header class="header" role="banner">
+            <nav class="nav" role="navigation" aria-label="Main navigation">
+                <div class="hover-expand-navbar" id="hoverNavbar" role="button" aria-label="Navigation menu" tabindex="0">
+                    <!-- Progress pill SVG -->
+                    <svg class="progress-pill" width="400" height="52">
+                        <path id="progressPath" d="M 104 4 L 184 4 A 20 20 0 0 1 204 24 L 204 24 A 20 20 0 0 1 184 44 L 104 44 A 20 20 0 0 1 84 24 L 84 24 A 20 20 0 0 1 104 4" 
+                              stroke="url(#whiteGlow)" 
+                              stroke-width="3" 
+                              fill="none" 
+                              stroke-dasharray="316" 
+                              stroke-dashoffset="316" 
+                              stroke-linecap="round" 
+                              filter="url(#glow)"
+                              style="stroke: #ffffff !important;" />
+                        <defs>
+                            <linearGradient id="whiteGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.8" />
+                                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge> 
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                    </svg>
+                    
+                    <!-- Left initials circle -->
+                    <div class="initials-circle left-circle">
+                        <span class="initials-char" style="top: 6px; left: -5px; font-family: 'Aguafina Script', cursive;">J</span>
+                        <span class="initials-char" style="top: 3px; left: -3px; margin-left: 2px; font-family: 'Aguafina Script', cursive;">A</span>
+                    </div>
+                    
+                    <!-- Right initials circle -->
+                    <div class="initials-circle right-circle">
+                        <span class="initials-char" style="top: 6px; left: -5px; font-family: 'Aguafina Script', cursive;">J</span>
+                        <span class="initials-char" style="top: 3px; left: -3px; margin-left: 2px; font-family: 'Aguafina Script', cursive;">A</span>
+                    </div>
+                    
+                    <!-- Expanded navigation content -->
+                    <div class="expanded-nav" id="expandedNav" role="menu">
+                        <div class="nav-item-expanded" data-target="work" role="menuitem" tabindex="0" aria-label="View my work projects" onclick="window.location.href='index.html#work'">Work</div>
+                        <div class="nav-item-expanded" data-target="contact" role="menuitem" tabindex="0" aria-label="Get in touch with me" onclick="window.location.href='index.html#contact'">Contact</div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <main class="main" role="main" id="main-content">
+            <!-- Case Study Hero Section -->
+            <section class="case-study-hero">
+                <div class="case-study-container">
+                    <h1 class="case-study-title">QuickDish</h1>
+                    <p class="case-study-subtitle">Recipe App Case Study</p>
+                </div>
+            </section>
+
+            <!-- Case Study Content -->
+            <div class="case-study-container">
+                <!-- The What Section -->
+                <section class="case-study-section">
+                    <h2 class="section-title">The What</h2>
+                    <div class="app-preview">
+                        <div class="quickdish-images-grid">
+                            <div class="quickdish-image">
+                                <img src="QuickDish/iteration one pantry.png" alt="QuickDish pantry iteration" loading="lazy">
+                            </div>
+                            <div class="quickdish-image">
+                                <img src="QuickDish/iteration 2 Home.png" alt="QuickDish home screen iteration" loading="lazy">
+                            </div>
+                            <div class="quickdish-image">
+                                <img src="QuickDish/iteration 2 Saved.png" alt="QuickDish saved recipes screen" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-content">
+                        <p>Deciding what to make for dinner can be frustrating, especially when you're short on time or unsure what you can cook with the ingredients you already have. <strong>QuickDish</strong> solves this problem by tracking what's in your pantry and suggesting quick, easy dinner recipes tailored to your taste preferences. The result? Less time stressing over meals, reduced food waste, and more delicious dinners made with what you already have at home.</p>
+                        
+                        <div class="features-section">
+                            <h3 class="features-heading">Features</h3>
+                            <div class="features-content">
+                                <ul class="features-list">
+                                    <li>Recipes recommended based on your taste</li>
+                                    <li>Explore recipes for inspiration</li>
+                                    <li>Feeling particular? Find a recipe based on cuisine</li>
+                                    <li>Track What You've already Got in your fridge</li>
+                                </ul>
+                                <div class="features-video">
+                                    <video autoplay muted loop playsinline>
+                                        <source src="https://framerusercontent.com/assets/VIkOidV6of1lf3Ty1vXR1IjDUvE.mp4" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- The Why Section -->
+                <section class="case-study-section">
+                    <h2 class="section-title">The Why</h2>
+                    <div class="competitor-analysis">
+                        <h3>Competitor analysis</h3>
+                        <p>While competitors do exist in this space, each has notable shortcomings. The main players in the market — SuperCook, Tasty, and Whisk — all address parts of the problem but fail to deliver a complete solution. SuperCook offers ingredient-based search but suffers from a clunky interface and limited performance, providing only a narrow range of item suggestions. Tasty stands out with its clean UI and strong YouTube presence, but lacks long-term pantry tracking capabilities. Whisk boasts a large recipe database, yet has no effective way to curate recommendations based on individual preferences. These gaps present a clear opportunity for QuickDish to combine the best features of each competitor while addressing their limitations.</p>
+                    </div>
+                    
+                    <div class="competitor-images">
+                        <div class="competitor-image scroll-animate">
+                            <img src="https://framerusercontent.com/images/SUj1JYHsle9JQHjzyLmgeHVYY.png?scale-down-to=2048" alt="Competitor analysis image 1" loading="lazy">
+                        </div>
+                        <div class="competitor-image scroll-animate">
+                            <img src="https://framerusercontent.com/images/J5O9OciDCromaNsQ0npjcFHPlw.png?scale-down-to=2048" alt="Competitor analysis image 2" loading="lazy">
+                        </div>
+                        <div class="competitor-image scroll-animate">
+                            <img src="https://framerusercontent.com/images/frYi6xzGnoIG3CK12tWEBnabjBY.png?scale-down-to=2048" alt="Competitor analysis image 3" loading="lazy">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- The How Section -->
+                <section class="case-study-section">
+                    <h2 class="section-title">The How</h2>
+                    <div class="goals-section">
+                        <h3>Goals</h3>
+                        <p>To make QuickDish successful, we need to design with competitor pitfalls in mind, ensuring a superior user experience. SuperCook's clunky interface can be improved by modernising the UI with strong hierarchy, colour, and spacing, while adding subtle animations and transitions to make the experience engaging as well as functional.</p>
+                        
+                        <p>Seamless user flows are essential for both pantry management and recipe recommendations. The recommendation flow should feel casual and enjoyable, like browsing a Pinterest-style explore page when relaxing on the couch. The pantry flow, being new to most users, must be clear, intuitive, and easy to complete, encouraging repeat use and building QuickDish into daily routines.</p>
+                    </div>
+
+                    <div class="design-comparison">
+                        <div class="comparison-item">
+                            <h4 class="comparison-title">Before</h4>
+                            <div class="design-mockup before-design">
+                                <img src="https://framerusercontent.com/images/SUj1JYHsle9JQHjzyLmgeHVYY.png?scale-down-to=2048" alt="Before design" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="comparison-arrow">
+                            <div class="arrow-container">
+                                <div class="arrow"></div>
+                            </div>
+                        </div>
+                        <div class="comparison-item">
+                            <h4 class="comparison-title">After</h4>
+                            <div class="design-mockup after-design">
+                                <img src="QuickDish/iteration 2 Home.png" alt="After design" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ideations Section -->
+                <section class="case-study-section">
+                    <h2 class="section-title">Ideations</h2>
+                    <div class="ideations-content">
+                        <p>My first design iterations lacked hierarchy. For example, on the home page, all recipe options were presented in similar-sized boxes, making it difficult for users to identify the primary call-to-action and resulting in a flat, uninspiring layout. In the next iteration, I changed the size and structure of the cards, with larger, centrally placed boxes for primary actions. This meant users no longer had to spend cognitive effort figuring out where to click.</p>
+                        
+                        <p>I also refined the navigation bar, moving from a bright orange floating design in the first version to a sleeker, modern style in the second. This change addressed accessibility issues when scrolling through the new explore section. To make the explore page more meaningful, I introduced a saved page that mimics Pinterest's scrolling flow. Finally, I removed some cards from the pantry page to free up white space and give the remaining elements room to breathe.</p>
+                        
+                        <p>Overall, I'm happy with the design decisions made in this iteration. The improved hierarchy on the home page creates a clear visual focus, reducing cognitive load and making the primary action obvious. The updated navigation bar feels more modern, solves previous accessibility issues, and integrates smoothly with the new explore section. Adding the saved page enhances the browsing experience, giving users a familiar and engaging way to discover recipes. Simplifying the pantry page by removing excess cards has improved spacing, balance, and overall readability.</p>
+                        
+                        <p>These changes collectively make QuickDish more intuitive, visually appealing, and aligned with the goal of delivering a seamless and enjoyable user experience.</p>
+                    </div>
+
+                    <div class="ideation-images">
+                        <div class="ideation-row">
+                            <h4 class="ideation-title">Ideation One</h4>
+                            <div class="ideation-grid">
+                                <div class="ideation-image">
+                                    <img src="ideation 1/iteration one home.png" alt="Ideation 1 - Home" loading="lazy">
+                                </div>
+                                <div class="ideation-image">
+                                    <img src="ideation 1/iteration one pantry.png" alt="Ideation 1 - Pantry" loading="lazy">
+                                </div>
+                                <div class="ideation-image">
+                                    <img src="ideation 1/iteration one pantry filled.png" alt="Ideation 1 - Pantry Filled" loading="lazy">
+                                </div>
+                                <div class="ideation-image">
+                                    <img src="ideation 1/iPhone 16 - 2.png" alt="Ideation 1 - iPhone" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="ideation-row">
+                            <h4 class="ideation-title">Ideation Two</h4>
+                            <div class="ideation-grid">
+                                <div class="ideation-image">
+                                    <img src="ideation 2/iteration 2 Home.png" alt="Ideation 2 - Home" loading="lazy">
+                                </div>
+                                <div class="ideation-image">
+                                    <img src="ideation 2/iteration 2 Saved.png" alt="Ideation 2 - Saved" loading="lazy">
+                                </div>
+                                <div class="ideation-image">
+                                    <img src="ideation 2/iteration one pantry-1.png" alt="Ideation 2 - Pantry 1" loading="lazy">
+                                </div>
+                                <div class="ideation-image">
+                                    <img src="ideation 2/iteration one pantry.png" alt="Ideation 2 - Pantry" loading="lazy">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Results Section -->
+                <section class="case-study-section">
+                    <h2 class="section-title">Results</h2>
+                    <div class="section-content">
+                        <p>Overall, I'm happy with the design decisions made in this iteration. The improved hierarchy on the home page creates a clear visual focus, reducing cognitive load and making the primary action obvious. The updated navigation bar feels more modern, solves previous accessibility issues, and integrates smoothly with the new explore section. Adding the saved page enhances the browsing experience, giving users a familiar and engaging way to discover recipes. Simplifying the pantry page by removing excess cards has improved spacing, balance, and overall readability.</p>
+                        
+                        <p>These changes collectively make QuickDish more intuitive, visually appealing, and aligned with the goal of delivering a seamless and enjoyable user experience.</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Scroll animation for competitor images
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            
+            function checkElements() {
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                animatedElements.forEach((el, index) => {
+                    if (el.classList.contains('visible')) return;
+                    
+                    const elementTop = el.getBoundingClientRect().top + scrollTop;
+                    const elementBottom = elementTop + el.offsetHeight;
+                    
+                    // Check if element is in viewport
+                    if (elementTop < scrollTop + windowHeight && elementBottom > scrollTop) {
+                        // Add staggered delay for each element
+                        setTimeout(() => {
+                            el.classList.add('visible');
+                        }, index * 200);
+                    }
+                });
+            }
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkElements);
+            
+            // Check immediately
+            checkElements();
+        });
+    </script>
+</body>
+</html>

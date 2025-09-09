@@ -1,0 +1,2051 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Performance optimizations */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .skill-card {
+        animation: none !important;
+    }
+    
+    .floating-shapes .shape {
+        animation: none !important;
+    }
+}
+
+/* Skip to main content link for accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    z-index: 10000;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #101010;
+    color: #ffffff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Custom cursor styles removed */
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header and Navigation */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(16, 16, 16, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Hover Expand Navbar */
+.hover-expand-navbar {
+    margin: 0 auto;
+    overflow: visible;
+    border-radius: 40px;
+    cursor: pointer;
+    width: 208px;
+    height: 48px;
+    background-color: transparent;
+    border: 1px solid #303135;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.4s ease-in-out;
+}
+
+
+.hover-expand-navbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 40px;
+    background-color: #101010;
+    z-index: -1;
+}
+
+/* Progress Pill SVG */
+.progress-pill {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    z-index: 1001;
+    pointer-events: none;
+    width: calc(100% + 10px);
+    height: calc(100% + 10px);
+    transition: width 0.4s ease-in-out;
+}
+
+/* Ensure stroke is always white */
+.progress-pill path {
+    stroke: #ffffff !important;
+}
+
+/* Remove focus/selection outlines from navigation */
+.hover-expand-navbar:focus,
+.hover-expand-navbar:focus-visible,
+.hover-expand-navbar:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.nav-item-expanded:focus,
+.nav-item-expanded:focus-visible,
+.nav-item-expanded:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove any blue selection states */
+.hover-expand-navbar *:focus,
+.hover-expand-navbar *:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.hover-expand-navbar:hover {
+    width: 377px;
+}
+
+/* Initials Circles */
+.initials-circle {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #303135;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #303135;
+    font-family: 'Aguafina Script', cursive;
+    pointer-events: none;
+}
+
+.left-circle {
+    left: 13px;
+}
+
+.right-circle {
+    right: 13px;
+}
+
+.initials-char {
+    display: inline-block;
+    position: relative;
+}
+
+/* Expanded Navigation */
+.expanded-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #7F8188;
+    padding-left: 60px;
+    padding-right: 60px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.hover-expand-navbar:hover .expanded-nav {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nav-item-expanded {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-item-expanded:hover {
+    color: #ffffff;
+}
+
+/* Main Content */
+.main {
+    margin-top: 120px;
+    min-height: calc(100vh - 120px);
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: calc(100vh - 120px);
+    text-align: center;
+    padding: 60px 0 0 0;
+    position: relative;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hero-title {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin: 0;
+    background: linear-gradient(180deg, #DAD9D9 0%, #7B7B7B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #7F8188;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+}
+
+/* Skills Showcase */
+.skills-showcase {
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease 0.5s forwards;
+    padding: 0 2rem;
+}
+
+/* Skill Cards */
+.skill-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 900px;
+}
+
+.skill-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    animation: cardEntrance 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Staggered entrance animations for each card */
+.skill-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.skill-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.skill-card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.skill-card:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.6s ease;
+}
+
+.skill-card:hover::before {
+    left: 100%;
+}
+
+.skill-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 25px 50px rgba(255, 255, 255, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    animation-play-state: paused;
+}
+
+/* Add subtle floating animation after entrance */
+.skill-card.entered {
+    animation: subtleFloat 6s ease-in-out infinite;
+    opacity: 1 !important;
+    transform: translateY(0) scale(1);
+}
+
+.skill-card:nth-child(1).entered {
+    animation-delay: 0s;
+}
+
+.skill-card:nth-child(2).entered {
+    animation-delay: 1.5s;
+}
+
+.skill-card:nth-child(3).entered {
+    animation-delay: 3s;
+}
+
+.skill-card:nth-child(4).entered {
+    animation-delay: 4.5s;
+}
+
+.skill-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Amazing color pops for each skill card */
+.skill-card:nth-child(1) .skill-icon {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 142, 142, 0.1));
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.skill-card:nth-child(2) .skill-icon {
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.2), rgba(68, 160, 141, 0.1));
+    box-shadow: 0 8px 32px rgba(78, 205, 196, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.skill-card:nth-child(3) .skill-icon {
+    background: linear-gradient(135deg, rgba(69, 183, 209, 0.2), rgba(150, 199, 237, 0.1));
+    box-shadow: 0 8px 32px rgba(69, 183, 209, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.skill-card:nth-child(4) .skill-icon {
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.2), rgba(245, 87, 108, 0.1));
+    box-shadow: 0 8px 32px rgba(240, 147, 251, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.skill-card:nth-child(1):hover .skill-icon {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.3), rgba(255, 142, 142, 0.2));
+    box-shadow: 0 12px 40px rgba(255, 107, 107, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.skill-card:nth-child(2):hover .skill-icon {
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.3), rgba(68, 160, 141, 0.2));
+    box-shadow: 0 12px 40px rgba(78, 205, 196, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.skill-card:nth-child(3):hover .skill-icon {
+    background: linear-gradient(135deg, rgba(69, 183, 209, 0.3), rgba(150, 199, 237, 0.2));
+    box-shadow: 0 12px 40px rgba(69, 183, 209, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.skill-card:nth-child(4):hover .skill-icon {
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.3), rgba(245, 87, 108, 0.2));
+    box-shadow: 0 12px 40px rgba(240, 147, 251, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.skill-icon svg {
+    width: 32px;
+    height: 32px;
+    color: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.skill-title {
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+}
+
+.skill-description {
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.95rem;
+    color: #7F8188;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.5;
+}
+
+.skill-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #DAD9D9, #7B7B7B);
+    border-radius: 2px;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: progressFill 2s ease 1s forwards;
+}
+
+/* Tools Section */
+.tools-section {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.tools-title {
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #7F8188;
+    margin: 0 0 2rem 0;
+    letter-spacing: 0.5px;
+}
+
+.tools-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.tool-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.tool-item:hover {
+    transform: translateY(-5px);
+}
+
+.tool-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.tool-icon.figma {
+    background: #ffffff;
+}
+
+.tool-icon.slack {
+    background: linear-gradient(135deg, #4A154B, #611f69);
+}
+
+.tool-icon.miro {
+    background: linear-gradient(135deg, #FFD02F, #FF6B35);
+}
+
+.tool-item:hover .tool-icon {
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.tool-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.tool-name {
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #7F8188;
+    transition: color 0.3s ease;
+}
+
+.tool-item:hover .tool-name {
+    color: #ffffff;
+}
+
+/* Artistic Elements */
+.artistic-elements {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 2rem;
+}
+
+.da-vinci-quote {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.da-vinci-quote::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+
+.quote-icon {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7F8188;
+}
+
+.quote-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.quote-text {
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+.quote-author {
+    font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.9rem;
+    color: #7F8188;
+    position: relative;
+    z-index: 1;
+}
+
+/* Floating Shapes */
+.floating-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 20px;
+    height: 20px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 15px;
+    height: 15px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 25px;
+    height: 25px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+/* Animations */
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes subtleFloat {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    50% {
+        transform: translateY(-8px) scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes progressFill {
+    to {
+        width: var(--width);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+    }
+}
+
+/* Reusable Card Component */
+.card-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 8rem; /* Reduced from 12rem to bring cards closer to MY WORK heading */
+    padding: 0 2rem;
+}
+
+.reusable-card {
+    width: 100%;
+    max-width: 800px;
+    height: 60%;
+    aspect-ratio: 1 / 0.6;
+    background-color: #444444;
+    border-radius: 20px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.reusable-card:hover {
+    transform: scale(1.05);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3), 0 0 8px 4px rgba(255, 255, 255, 0.3);
+}
+
+.card-placeholder-text {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    color: #8E8E93;
+    line-height: 1.4;
+    pointer-events: none;
+}
+
+.card-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    width: 80%;
+}
+
+.card-heading {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(1.2rem, 4vw, 2.5rem); /* 50% of card height * 65% heading split */
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.card-subheading {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(0.8rem, 2.5vw, 1.8rem); /* 50% of card height * 35% subheading split */
+    font-weight: 400;
+    color: #8E8E93;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Speaking Engineer Card with Image */
+.speaking-engineer-card {
+    position: relative;
+    overflow: hidden; /* Clip the image that extends beyond */
+}
+
+.card-image {
+    position: absolute;
+    bottom: -20px;
+    right: -40px; /* Moved further right to show more of the image */
+    z-index: 1;
+    pointer-events: none;
+    height: 90%; /* 80% of the card height */
+    width: auto; /* Let width adjust based on aspect ratio */
+}
+
+.card-app-image {
+    height: 100%; /* Fill the container which is 80% of card height */
+    width: auto; /* Maintain aspect ratio */
+    transform: rotate(-15deg);
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.speaking-engineer-card:hover .card-app-image {
+    transform: rotate(-12deg) scale(1.05);
+    opacity: 1;
+}
+
+/* Card Link Styling */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    height: 60%;
+    aspect-ratio: 1 / 0.6;
+}
+
+.card-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-link .reusable-card {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    aspect-ratio: none;
+}
+
+.card-link:hover .reusable-card {
+    transform: scale(1.05);
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3), 0 0 8px 4px rgba(255, 255, 255, 0.3);
+}
+
+/* Haven Card with Image */
+.haven-card {
+    position: relative;
+    overflow: hidden; /* Clip the image that extends beyond */
+}
+
+.card-image-haven {
+    position: absolute;
+    bottom: -30px; /* Bottom clipping - extends below card */
+    right: 10%; /* 10% from right wall */
+    z-index: 1;
+    pointer-events: none;
+    height: 90%; /* 90% of the card height */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.card-app-image-haven {
+    height: 100%; /* Fill the container which is 90% of card height */
+    width: auto; /* Maintain aspect ratio */
+    /* No rotation - straight alignment */
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.haven-card:hover .card-app-image-haven {
+    transform: scale(1.05); /* Only scale on hover, no rotation */
+    opacity: 1;
+}
+
+/* Felix Card with Image */
+.felix-card {
+    position: relative;
+    overflow: hidden; /* Allow clipping */
+}
+
+.card-image-felix {
+    position: absolute;
+    top: 50%; /* Center aligned vertically */
+    right: 10px; /* Shifted left a little from the right edge */
+    transform: translateY(-50%); /* Center the image vertically */
+    z-index: 1;
+    pointer-events: none;
+    height: 60%; /* Reasonable height for center right placement */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.card-app-image-felix {
+    height: 100%; /* Fill the container */
+    width: auto; /* Maintain aspect ratio */
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.felix-card:hover .card-app-image-felix {
+    transform: scale(1.05); /* Only scale on hover, no rotation */
+    opacity: 1;
+}
+
+/* QuickDish Card with Image */
+.quickdish-card {
+    position: relative;
+    overflow: hidden; /* Clip the image that extends beyond */
+}
+
+.card-image-quickdish {
+    position: absolute;
+    bottom: -30px; /* Bottom clipping - extends below card */
+    right: 10%; /* 10% from right wall */
+    z-index: 1;
+    pointer-events: none;
+    height: 90%; /* 90% of the card height */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.card-app-image-quickdish {
+    height: 100%; /* Fill the container which is 90% of card height */
+    width: auto; /* Maintain aspect ratio */
+    /* No rotation - straight alignment */
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.quickdish-card:hover .card-app-image-quickdish {
+    transform: scale(1.05); /* Only scale on hover, no rotation */
+    opacity: 1;
+}
+
+/* Banking Card with Image */
+.banking-card {
+    position: relative;
+    overflow: hidden; /* Clip the image that extends beyond */
+}
+
+.card-image-banking {
+    position: absolute;
+    bottom: -20px; /* Extend below card */
+    right: -120px; /* Extended even further right for maximum clipping */
+    z-index: 1;
+    pointer-events: none;
+    height: 75%; /* Reduced from 90% to 75% */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.card-app-image-banking {
+    height: 100%; /* Fill the container which is 90% of card height */
+    width: auto; /* Maintain aspect ratio */
+    /* No rotation - straight alignment */
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.banking-card:hover .card-app-image-banking {
+    transform: scale(1.05); /* Only scale on hover, no rotation */
+    opacity: 1;
+}
+
+/* Avis Card with Image */
+.avis-card {
+    position: relative;
+    overflow: hidden; /* Clip the image that extends beyond */
+}
+
+.card-image-avis {
+    position: absolute;
+    bottom: -30px; /* Bottom clipping - extends below card */
+    right: 10%; /* 10% from right wall */
+    z-index: 1;
+    pointer-events: none;
+    height: 90%; /* 90% of the card height */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.card-app-image-avis {
+    height: 100%; /* Fill the container which is 90% of card height */
+    width: auto; /* Maintain aspect ratio */
+    /* No rotation - straight alignment */
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.avis-card:hover .card-app-image-avis {
+    transform: scale(1.05); /* Only scale on hover, no rotation */
+    opacity: 1;
+}
+
+/* My Work Section */
+.my-work-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 6rem; /* Increased from 4rem */
+    margin-bottom: -2rem; /* Reduced negative margin to bring cards closer to heading */
+    padding: 0 2rem;
+}
+
+.my-work-title {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 40px;
+    font-weight: 300; /* Light weight */
+    color: #7F8188;
+    margin: 0;
+    text-align: center;
+}
+
+/* Haven Case Study Page Styles */
+body.haven-page {
+    background-color: #ffffff;
+}
+
+.haven-page .main {
+    background-color: #ffffff;
+    padding: 4rem 0;
+    margin-top: 120px;
+}
+
+.haven-page .hover-expand-navbar::after {
+    background-color: #ffffff;
+}
+
+.haven-page .header {
+    background-color: #ffffff;
+    padding: 2rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.haven-page .nav-item-expanded:hover {
+    color: #000000;
+}
+
+/* Haven page navigation specific styles */
+.haven-page .hover-expand-navbar {
+    border: 1px solid #000000;
+}
+
+.haven-page .initials-circle {
+    border: 1px solid #000000;
+    color: #000000;
+}
+
+.haven-page .expanded-nav {
+    color: #000000;
+}
+
+.haven-page .nav-item-expanded {
+    color: #000000;
+}
+
+
+.case-study-hero {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 6rem;
+    padding: 0 2rem;
+}
+
+.case-study-title {
+    font-family: 'SF Pro Rounded Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 1rem 0;
+    line-height: 1em;
+    letter-spacing: -0.04em;
+}
+
+.case-study-subtitle {
+    font-family: 'SF Pro Rounded Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #999999;
+    margin: 0;
+    line-height: 1em;
+    letter-spacing: -0.04em;
+}
+
+.meet-echo-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 6rem;
+    padding: 0 2rem;
+}
+
+.meet-echo-title {
+    font-family: 'SF Pro Rounded Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 1rem 0;
+    line-height: 1em;
+    letter-spacing: -0.03em;
+}
+
+.meet-echo-subtitle {
+    font-family: 'SF Pro Rounded Medium', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+    margin: 0 0 3rem 0;
+}
+
+.echo-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 900px;
+    width: 100%;
+}
+
+.echo-image {
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.echo-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.what-is-haven-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 6rem auto;
+    padding: 0 2rem;
+}
+
+.section-title {
+    font-family: 'SF Pro Rounded Semibold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #000000;
+    margin: 3rem 0 1rem 0;
+    line-height: 1.4em;
+    letter-spacing: -0.04em;
+}
+
+.section-title:first-child {
+    margin-top: 0;
+}
+
+.section-description {
+    font-family: 'SF Pro Display Light', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #000000;
+    line-height: 1.6em;
+    letter-spacing: -0.02em;
+    margin: 0 0 2rem 0;
+}
+
+.section-description strong {
+    font-weight: 600;
+}
+
+.app-screenshots {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 6rem;
+    padding: 0 2rem;
+}
+
+.screenshot {
+    aspect-ratio: 9/19.5;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.why-build-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 6rem auto;
+    padding: 0 2rem;
+}
+
+.design-process {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 6rem;
+    padding: 0 2rem;
+}
+
+.process-image {
+    aspect-ratio: 2/3;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.process-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.design-decisions-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 6rem auto;
+    padding: 0 2rem;
+}
+
+.section-subtitle {
+    font-family: 'SF Pro Rounded Bold', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin: 3rem 0 1rem 0;
+    line-height: 1.4em;
+    letter-spacing: -0.04em;
+}
+
+.section-subtitle:first-child {
+    margin-top: 0;
+}
+
+.animation-examples {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    width: 100%;
+    margin-bottom: 6rem;
+    padding: 0 2rem;
+}
+
+.animation-item {
+    aspect-ratio: 1;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.animation-item img,
+.animation-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Hero Text Animations */
+.hero-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.hero-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Echo Images Animation */
+.echo-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.echo-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Scale In Bottom Animation */
+.scale-in-bottom {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scale-in-bottom.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Fade In Left Animation */
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Fade In Bottom Animation */
+.fade-in-bottom {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-bottom.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation Classes - Disabled for now */
+.fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-bottom {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide-in-bottom.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scale-in {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Staggered Animation Delays */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+/* Hover Effects for Interactive Elements */
+.interactive-hover {
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.interactive-hover:hover {
+    transform: translateY(-2px);
+}
+
+/* Image Hover Effects */
+.image-hover {
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+}
+
+.image-hover:hover {
+    transform: scale(1.02);
+}
+
+.image-hover img {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-hover:hover img {
+    transform: scale(1.05);
+}
+
+/* Text Reveal Animation - Disabled for now */
+.text-reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.text-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Section Reveal Animation - Disabled for now */
+.section-reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.section-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design for Case Study */
+@media (max-width: 768px) {
+    .case-study-title,
+    .case-study-subtitle {
+        font-size: 32px;
+    }
+    
+    .echo-images {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .app-screenshots {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .design-process {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .animation-examples {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .section-title {
+        font-size: 20px;
+    }
+    
+    .section-description {
+        font-size: 16px;
+    }
+}
+
+/* Responsive adjustments for card */
+@media (max-width: 768px) {
+    .card-container {
+        padding: 0 1.5rem;
+    }
+    
+    .card-image {
+        bottom: -15px;
+        right: -30px; /* Less clipping on tablets */
+        height: 85%; /* Slightly smaller on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .card-image {
+        bottom: -10px;
+        right: -20px; /* Even less clipping on mobile */
+        height: 80%; /* Smaller on mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        padding: 0 1rem;
+    }
+}
+
+/* Get In Touch Section */
+.get-in-touch-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 8rem;
+    padding: 0 2rem;
+}
+
+.get-in-touch-container {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 4rem 3rem;
+    position: relative;
+}
+
+.get-in-touch-heading {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    background: linear-gradient(180deg, #DAD9D9 0%, #7B7B7B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 1.5rem 0;
+    line-height: 1.2;
+    position: relative;
+}
+
+.get-in-touch-description {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 400;
+    color: #7F8188;
+    margin: 0 0 3rem 0;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 20rem;
+    position: relative;
+}
+
+.cta-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border: 2px solid transparent;
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    color: #ffffff;
+    min-width: 160px;
+    height: 56px;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #0056CC 0%, #4A4AC4 100%);
+    border-radius: 50px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 122, 255, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cta-button:hover::before {
+    opacity: 1;
+}
+
+.cta-button:active {
+    transform: translateY(-1px) scale(1.02);
+    transition: all 0.1s ease;
+}
+
+.button-text {
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover .button-text {
+    transform: translateY(-1px);
+}
+
+.button-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+}
+
+.cta-button:active .button-ripple {
+    width: 300px;
+    height: 300px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    position: relative;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon:hover::before {
+    opacity: 1;
+}
+
+.social-icon svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover svg {
+    transform: rotate(5deg) scale(1.1);
+}
+
+/* Contact Form Styles */
+.contact-form-container {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: slideInUp 0.4s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.contact-form-title {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 2rem 0;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #007AFF;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.form-error {
+    color: #ff6b6b;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+    min-height: 1.2rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.form-submit-btn,
+.form-cancel-btn {
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.form-submit-btn {
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    color: #ffffff;
+}
+
+.form-submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+}
+
+.form-cancel-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.form-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments for Get In Touch */
+@media (max-width: 768px) {
+    .get-in-touch-container {
+        padding: 3rem 2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .cta-button {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .contact-form-container {
+        margin-top: 2rem;
+        padding: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .form-submit-btn,
+    .form-cancel-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .social-icons {
+        gap: 1rem;
+    }
+    
+    .social-icon {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .social-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .get-in-touch-section {
+        padding: 0 1rem;
+    }
+    
+    .get-in-touch-container {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+/* Animations will be added here as needed */
+
+/* Mobile Touch Improvements */
+@media (max-width: 768px) {
+    /* Improve touch targets */
+    .nav-item-expanded {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .cta-button {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    
+    .social-icon {
+        min-width: 44px;
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    
+    /* Improve card interactions on mobile */
+    .reusable-card {
+        touch-action: manipulation;
+    }
+    
+    .card-link {
+        touch-action: manipulation;
+    }
+    
+    /* Better form interactions */
+    .form-input,
+    .form-textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hover-expand-navbar {
+        width: 180px;
+    }
+    
+    .hover-expand-navbar:hover {
+        width: 300px;
+    }
+    
+    .expanded-nav {
+        font-size: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    
+    .initials-circle {
+        width: 28px;
+        height: 28px;
+        font-size: 28px;
+    }
+    
+    .left-circle {
+        left: 10px;
+    }
+    
+    .right-circle {
+        right: 10px;
+    }
+    
+    .hero-title {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        letter-spacing: -0.01em;
+    }
+    
+    .hero-subtitle {
+        font-size: 24px;
+    }
+    
+    .hero-section {
+        padding: 1rem 0;
+        min-height: 80vh;
+    }
+    
+    .skills-showcase {
+        margin-top: 2rem;
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+    
+    .skill-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .skill-card {
+        padding: 1.5rem;
+    }
+    
+    .tools-grid {
+        gap: 1.5rem;
+    }
+    
+    .da-vinci-quote {
+        padding: 1.5rem;
+    }
+    
+    .quote-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        letter-spacing: 0;
+    }
+    
+    .hero-subtitle {
+        font-size: 20px;
+    }
+    
+    .hero-section {
+        min-height: 70vh;
+        padding: 0.5rem 0;
+    }
+    
+    .skills-showcase {
+        margin-top: 1.5rem;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .skill-card {
+        padding: 1rem;
+    }
+    
+    .skill-title {
+        font-size: 1.3rem;
+    }
+    
+    .skill-description {
+        font-size: 0.9rem;
+    }
+    
+    .tools-grid {
+        gap: 1rem;
+    }
+    
+    .tool-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .tool-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .da-vinci-quote {
+        padding: 1rem;
+    }
+    
+    .quote-text {
+        font-size: 0.95rem;
+    }
+    
+    .quote-author {
+        font-size: 0.8rem;
+    }
+}
+
+/* Scroll animations will be added here as needed */
+
+/* Hide scrollbar */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+html {
+    scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+body {
+    -ms-overflow-style: none;
+}
