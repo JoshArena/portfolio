@@ -953,25 +953,24 @@ body {
 
 .card-image-banking {
     position: absolute;
-    bottom: -20px; /* Extend below card */
-    right: -120px; /* Extended even further right for maximum clipping */
+    bottom: -30px; /* match Haven bottom clipping */
+    right: 10%; /* match Haven 10% from right */
     z-index: 1;
     pointer-events: none;
-    height: 75%; /* Reduced from 90% to 75% */
+    height: 90%; /* match Haven scale */
     width: auto; /* Maintain aspect ratio */
 }
 
 .card-app-image-banking {
-    height: 100%; /* Fill the container which is 90% of card height */
-    width: auto; /* Maintain aspect ratio */
-    /* No rotation - straight alignment */
+    height: 100%;
+    width: auto;
     opacity: 0.9;
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .banking-card:hover .card-app-image-banking {
-    transform: scale(1.05); /* Only scale on hover, no rotation */
+    transform: scale(1.05);
     opacity: 1;
 }
 

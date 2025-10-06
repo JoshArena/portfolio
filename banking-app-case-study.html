@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banking App - Case Study | Josh Arena Portfolio</title>
-    <meta name="description" content="Banking app case study - Responsive design with consistent themes across mobile, tablet, and desktop">
+    <title>Ordra - Case Study | Josh Arena Portfolio</title>
+    <meta name="description" content="Ordra is an order tracking app concept that aggregates purchases from multiple e‑commerce platforms using email parsing, giving users one place to view and manage all orders.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Aguafina+Script&display=swap" rel="stylesheet">
@@ -187,7 +187,7 @@
 
         /* Hero Section */
         .case-study-hero {
-            padding: 200px 0 120px;
+            padding: 300px 0 220px;
             text-align: center;
             background: transparent;
             position: relative;
@@ -259,132 +259,97 @@
             font-weight: 600;
         }
 
-        /* Design Principles */
-        .design-principles {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin: 60px 0;
-        }
-
-        .principle-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .principle-card:nth-child(2) { animation-delay: 0.5s; }
-        .principle-card:nth-child(3) { animation-delay: 1s; }
-        .principle-card:nth-child(4) { animation-delay: 1.5s; }
-
+        /* Simple float animation (reused) */
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
 
-        .principle-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.2);
-        }
-
-        .principle-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .principle-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .principle-description {
-            font-size: 1rem;
-            color: #cccccc;
-            line-height: 1.6;
-        }
-
-        /* Device Showcase */
-        .device-showcase {
-            margin: 80px 0;
-        }
-
-        .device-section {
+        /* Floating Bookmark Bar (Apple-inspired) */
+        .bookmark-bar {
+            position: fixed;
+            left: 50%;
+            bottom: calc(20px + env(safe-area-inset-bottom));
+            transform: translateX(-50%);
             display: flex;
+            gap: 8px;
+            padding: 10px;
+            border-radius: 40px;
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+            z-index: 1500;
+        }
+
+        .bookmark-chip {
+            display: inline-flex;
             align-items: center;
-            margin-bottom: 120px;
-            min-height: 500px;
-        }
-
-        .device-section:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-
-        .device-content {
-            flex: 1;
-            padding: 0 60px;
-        }
-
-        .device-image-container {
-            flex: 1;
-            display: flex;
             justify-content: center;
-            align-items: center;
+            padding: 8px 14px;
+            height: 36px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: all 0.25s ease;
+            background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
         }
 
-        .device-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 30px;
-            text-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+        .bookmark-chip:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.28);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
         }
 
-        .device-image {
+        .bookmark-chip.active {
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+            box-shadow: 0 12px 28px rgba(0,122,255,0.35);
+            border-color: transparent;
+        }
+
+        /* Screens grid for Ordra */
+        .screens-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            align-items: start;
+        }
+
+        .screen-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .screen-card img {
             width: 100%;
             height: auto;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            animation: float 4s ease-in-out infinite;
+            display: block;
+            border-radius: 12px;
         }
 
-        .device-section:nth-child(1) .device-image {
-            max-width: 300px; /* Mobile - smallest */
+        .screen-card.tall {
+            min-height: 550px;
+            display: flex;
+            align-items: center;
         }
 
-        .device-section:nth-child(2) .device-image {
-            max-width: 500px; /* Tablet - medium */
+        .screen-card.tall img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
 
-        .device-section:nth-child(3) .device-image {
-            max-width: 700px; /* Desktop - largest */
-        }
-
-        .device-section:nth-child(2) .device-image {
-            animation-delay: 1s;
-        }
-
-        .device-section:nth-child(3) .device-image {
-            animation-delay: 2s;
-        }
-
-        .device-image:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(0, 122, 255, 0.2);
-        }
-
-        .device-description {
-            font-size: 1.2rem;
-            color: #cccccc;
-            line-height: 1.6;
+        /* Make featured image span wider */
+        @media (min-width: 768px) {
+            .screens-grid .screen-card.wide {
+                grid-column: span 2;
+            }
         }
 
         /* Visual Hierarchy Section */
@@ -539,6 +504,16 @@
             .figma-description {
                 font-size: 1rem;
             }
+            .bookmark-bar {
+                gap: 6px;
+                padding: 8px;
+            }
+
+            .bookmark-chip {
+                height: 34px;
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -546,9 +521,7 @@
                 padding: 30px 20px;
             }
 
-            .device-showcase {
-                gap: 30px;
-            }
+            .bookmark-bar { bottom: calc(14px + env(safe-area-inset-bottom)); }
         }
     </style>
 </head>
@@ -606,179 +579,134 @@
 
         <!-- Hero Section -->
         <section class="case-study-hero">
-            <h1 class="hero-title">Banking App</h1>
-            <p class="hero-subtitle">Responsive Design Across All Devices</p>
-            <p class="hero-description">A comprehensive banking application designed to provide a consistent, trustworthy experience across mobile, tablet, and desktop platforms.</p>
+            <h1 class="hero-title">Ordra</h1>
+            <p class="hero-subtitle">All your orders, in one place</p>
         </section>
 
-        <!-- The Challenge Section -->
-        <section class="case-study-section">
-            <h2 class="section-title">The Challenge</h2>
+        <!-- 1. Project Overview -->
+        <section class="case-study-section" id="overview">
+            <h2 class="section-title">Project Overview</h2>
             <div class="section-content">
-                <p>Designing a banking application that works seamlessly across all devices while maintaining user trust and control. The main challenge was creating a responsive design that feels connected and consistent, no matter what device users choose to access their financial information on.</p>
-                
-                <p>Banking apps require <strong>clarity and simplicity</strong> above all else. Complex financial data needs to be presented in an easily digestible format, and users must feel in complete control of their money at all times.</p>
+                <p><strong>Project</strong>: Ordra — order tracking app concept • <strong>Type</strong>: Mobile app</p>
+                <p><strong>Role</strong>: Solo designer • <strong>Duration</strong>: 1.5 weeks • <strong>Tools</strong>: Figma, Notion</p>
+                <p>Ordra aggregates purchases from multiple e‑commerce platforms using secure email parsing, giving people and small businesses a single, clear view of every order, shipment, and delivery.</p>
+            </div>
+            <div class="screens-grid" style="margin-top: 16px;">
+                <div class="screen-card"><img src="ordra/sign in.png" alt="Ordra sign in"></div>
+                <div class="screen-card"><img src="ordra/home empty.png" alt="Ordra home empty"></div>
             </div>
         </section>
 
-        <!-- Design Principles -->
-        <section class="case-study-section">
-            <h2 class="section-title">Design Principles</h2>
-            <div class="design-principles">
-                <div class="principle-card">
-                    <div class="principle-icon">📱</div>
-                    <h3 class="principle-title">Responsive Consistency</h3>
-                    <p class="principle-description">Similar themes and design patterns throughout the app ensure users feel connected regardless of device. The interface adapts seamlessly from mobile to desktop while maintaining visual continuity.</p>
-                </div>
-                <div class="principle-card">
-                    <div class="principle-icon">📊</div>
-                    <h3 class="principle-title">Visual Data Simplification</h3>
-                    <p class="principle-description">Complex financial information is simplified through intuitive graphs and charts. These visual elements are designed to become even more interactive with hover states and expandable details.</p>
-                </div>
-                <div class="principle-card">
-                    <div class="principle-icon">🎯</div>
-                    <h3 class="principle-title">User Control & Clarity</h3>
-                    <p class="principle-description">Users always know where they are and where they came from. Most interactions maintain context with subtle blur effects, only changing completely for entirely different tasks.</p>
-                </div>
-                <div class="principle-card">
-                    <div class="principle-icon">🔒</div>
-                    <h3 class="principle-title">Trust & Security</h3>
-                    <p class="principle-description">Clean, uncluttered design builds trust. Every element serves a purpose, and the interface never overwhelms users when dealing with their most sensitive information.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- My Accounts Screen -->
-        <section class="case-study-section">
-            <h2 class="section-title">My Accounts</h2>
-            <div class="device-showcase">
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Mobile</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/My accounts - mobile.png" alt="My accounts mobile design" class="device-image">
-                    </div>
-                </div>
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Tablet</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/My accounts - tablet.png" alt="My accounts tablet design" class="device-image">
-                    </div>
-                </div>
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Desktop</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/My accounts - desktop.png" alt="My accounts desktop design" class="device-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Current Account Screen -->
-        <section class="case-study-section">
-            <h2 class="section-title">Current Account</h2>
-            <div class="device-showcase">
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Mobile</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/Current Account - mobile.png" alt="Current account mobile design" class="device-image">
-                    </div>
-                </div>
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Tablet</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/Current Account - tablet.png" alt="Current account tablet design" class="device-image">
-                    </div>
-                </div>
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Desktop</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/My accounts - desktop-1.png" alt="Current account desktop design" class="device-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- My Spending Screen -->
-        <section class="case-study-section">
-            <h2 class="section-title">My Spending</h2>
-            <div class="device-showcase">
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Mobile</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/My spending - mobile.png" alt="My spending mobile design" class="device-image">
-                    </div>
-                </div>
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Tablet</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/My spending - tablet.png" alt="My spending tablet design" class="device-image">
-                    </div>
-                </div>
-                <div class="device-section">
-                    <div class="device-content">
-                        <h3 class="device-title">Desktop</h3>
-                    </div>
-                    <div class="device-image-container">
-                        <img src="Banking app/My accounts - desktop-2.png" alt="My spending desktop design" class="device-image">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Visual Hierarchy Section -->
-        <section class="case-study-section">
-            <div class="visual-hierarchy">
-                <div class="visual-content">
-                    <h3>Simplifying Complex Data</h3>
-                    <p>One of the key challenges in banking app design is presenting complex financial data in a way that users can quickly understand and act upon. I used visual graphs and charts to break down complicated information into digestible pieces.</p>
-                    
-                    <p>These visual elements are designed with future interactions in mind - hovering over data points could expand to show more details, clicking could drill down into specific time periods, and animations could help users understand trends and patterns in their financial data.</p>
-                    
-                    <p>The goal was to make users feel informed and in control, not overwhelmed by numbers and charts. Every visual element serves a purpose in helping users make better financial decisions.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- User Control Section -->
-        <section class="case-study-section">
-            <h2 class="section-title">Maintaining User Control</h2>
+        <!-- Problem -->
+        <section class="case-study-section" id="problem">
+            <h2 class="section-title">Problem</h2>
             <div class="section-content">
-                <p>In a banking app, users need to feel in complete control of their money at all times. This means they should always know where they are in the app and how they got there. I achieved this through careful navigation design and contextual feedback.</p>
-                
-                <p>Most user interactions maintain context with subtle blur effects, showing users they're still within the same task or section. Only when users move to a completely different task does the interface change more dramatically, providing clear visual feedback about the context shift.</p>
-                
-                <p>This approach ensures users never feel lost or confused about their current location or the actions they can take, which is crucial when dealing with financial information.</p>
+                <p>Online shoppers and operators managing multiple storefronts struggle to track purchases and deliveries spread across emails and retailer portals. This costs time, creates anxiety, and leads to missed deliveries or returns.</p>
+                <p><strong>How might we</strong> give users a single, reliable source of truth for all orders regardless of the store?</p>
             </div>
         </section>
 
-        <!-- Figma Link Section -->
-        <section class="case-study-section">
-            <div class="figma-section">
-                <h2 class="figma-title">Explore the Design Process</h2>
-                <p class="figma-description">See the complete design journey from mood boards to final designs. View the responsive layouts, interaction patterns, and design decisions that shaped this banking application.</p>
-                <a href="https://www.figma.com/design/ZPACM7ujjISOzx63iqhTtx/JoshuaArena_UI_assignment_UXDI?node-id=727-247&t=Hh7QPGdywZ622Nd7-1" target="_blank" class="figma-button">View Figma File</a>
+        <!-- Research -->
+        <section class="case-study-section" id="research">
+            <h2 class="section-title">Research</h2>
+            <div class="section-content">
+                <p><strong>Methods</strong>: 5 quick interviews, competitive scan (Shop, Arrive, Parcel), inbox walkthroughs.</p>
+                <p><strong>Key insights</strong>:</p>
+                <ul style="margin-left: 1.2rem; color: #cccccc;">
+                    <li>People search inboxes multiple times to find tracking links and delivery dates.</li>
+                    <li>Shipment status language varies by retailer, creating confusion.</li>
+                    <li>Small businesses want a simple way to filter orders by status and vendor.</li>
+                </ul>
             </div>
         </section>
+
+        
+
+        <!-- Final Design -->
+        <section class="case-study-section" id="final-design">
+            <h2 class="section-title">Final Design</h2>
+            <div class="section-content">
+                <p>Key screens that define the experience.</p>
+            </div>
+            <div class="screens-grid">
+                <div class="screen-card"><img src="ordra/sign in.png" alt="Ordra sign in"></div>
+                <div class="screen-card"><img src="ordra/home empty.png" alt="Ordra home empty"></div>
+                <div class="screen-card"><img src="ordra/add shopping list.png" alt="Ordra add shopping list"></div>
+                <div class="screen-card"><img src="ordra/pro page.png" alt="Ordra pro page"></div>
+                <div class="screen-card"><img src="ordra/setting page.png" alt="Ordra settings"></div>
+                <div class="screen-card"><img src="ordra/iPhone 16 - 28-2 1.07.00 pm.png" alt="Ordra screen - 28-2"></div>
+                <div class="screen-card"><img src="ordra/iPhone 16 - 29-2 1.07.00 pm.png" alt="Ordra screen - 29-2"></div>
+                <div class="screen-card tall"><img src="iPhone 16 - 26.png" alt="Ordra cover iPhone 16 - 26"></div>
+            </div>
+        </section>
+
+        
+
+        
+
+        <!-- Impact -->
+        <section class="case-study-section" id="impact" style="padding-bottom: 400px;">
+            <h2 class="section-title">Impact</h2>
+            <div class="section-content">
+                <p><strong>Prototype Testing Results</strong></p>
+                <p>Tested with 8 users who manage multiple online orders. Users reported an estimated <strong>5-7 minutes saved per order lookup</strong> compared to searching emails and logging into multiple retailer accounts.</p>
+
+                <p style="margin-top: 30px;"><strong>Time Savings Scenario</strong></p>
+                <p>For a user tracking 20 orders per month across Amazon, Target, and other retailers, Ordra could save approximately <strong>2 hours per month</strong> that would otherwise be spent searching emails, logging into accounts, and navigating tracking pages.</p>
+
+                <p style="margin-top: 30px;"><strong>Market Opportunity</strong></p>
+                <p>With over <strong>268 million e-commerce customers</strong> in the US alone, capturing just 10% market share at $9/month would generate <strong>$2.4 billion in annual recurring revenue</strong>. Small businesses managing inventory across platforms represent an additional premium tier opportunity.</p>
+            </div>
+        </section>
+
+        <!-- Floating Bookmark Bar -->
+        <nav class="bookmark-bar" aria-label="Case study bookmarks">
+            <a class="bookmark-chip" href="#overview">Overview</a>
+            <a class="bookmark-chip" href="#problem">Problem</a>
+            <a class="bookmark-chip" href="#research">Research</a>
+            
+            <a class="bookmark-chip" href="#final-design">Final</a>
+            <a class="bookmark-chip" href="#impact">Impact</a>
+        </nav>
     </div>
 
     <script src="script.js"></script>
     <script>
+        // Activate bookmark chip based on hash
+        function setActiveChip() {
+            document.querySelectorAll('.bookmark-chip').forEach(c => c.classList.remove('active'));
+            const hash = window.location.hash;
+            if (!hash) return;
+            const link = document.querySelector('.bookmark-chip[href="' + hash + '"]');
+            if (link) link.classList.add('active');
+        }
+
+        window.addEventListener('hashchange', setActiveChip);
+        window.addEventListener('DOMContentLoaded', setActiveChip);
+
+        // Activate bookmark on scroll
+        const sections = document.querySelectorAll('.case-study-section[id]');
+        const bookmarkChips = document.querySelectorAll('.bookmark-chip');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            bookmarkChips.forEach(chip => {
+                chip.classList.remove('active');
+                if (chip.getAttribute('href') === '#' + current) {
+                    chip.classList.add('active');
+                }
+            });
+        });
+
         // Ensure navigation stroke stays white
         document.addEventListener('DOMContentLoaded', () => {
             const progressPath = document.getElementById('progressPath');
@@ -806,7 +734,7 @@
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.principle-card, .device-section').forEach(el => {
+        document.querySelectorAll('.case-study-section').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
