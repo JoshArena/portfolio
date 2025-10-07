@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Aguafina+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@rive-app/canvas@2.23.7"></script>
 </head>
 <body class="haven-page">
     <!-- Header with Navigation -->
@@ -164,6 +165,11 @@
             <p class="section-description scale-in-bottom stagger-9">
                 This principle is also visible in apps like <strong>Duolingo</strong>, which uses character animations to motivate learners and keep them engaged. While animations aren't the sole reason for Duolingo's success, they've been a proven factor in transforming learning into a fun, rewarding experience. With Haven, the goal was the same: to make reflection and self-therapy feel approachable, interactive, and emotionally resonant.
             </p>
+
+            <!-- Interactive Rive Character -->
+            <div class="rive-container" style="width: 100%; max-width: 600px; height: 600px; margin: 40px auto; display: flex; justify-content: center; align-items: center;">
+                <canvas id="echo-canvas" style="width: 100%; height: 100%;"></canvas>
+            </div>
         </section>
 
         <!-- Animation Examples -->
@@ -311,6 +317,21 @@
             });
             // Check immediately only for echo images
             checkEchoImages();
+
+            // Initialize Rive animation
+            const r = new rive.Rive({
+                src: 'echo.riv',
+                canvas: document.getElementById('echo-canvas'),
+                autoplay: true,
+                stateMachines: 'State Machine 1',
+                onLoad: () => {
+                    console.log('Rive animation loaded successfully');
+                    r.resizeDrawingSurfaceToCanvas();
+                },
+                onLoadError: (err) => {
+                    console.error('Failed to load Rive animation:', err);
+                }
+            });
         });
     </script>
 </body>
